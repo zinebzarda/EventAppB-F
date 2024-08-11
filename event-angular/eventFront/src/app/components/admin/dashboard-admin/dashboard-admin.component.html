@@ -1,0 +1,129 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="https://imgbb.com/" class="logo">
+    <img src="https://i.ibb.co/hZY13qM/Capture-d-cran-2024-08-03-231858-removebg-preview.png"  width="60px" height="60px"/>
+    <div class="logo-name"><span>Hello</span>Event</div>
+  </a>
+  <ul class="side-menu">
+    <li><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+    <li><a href="/events"><i class='bx bxs-calendar'></i>Event</a></li>
+    <li class="active"><a href="#"><i class='bx bxs-bookmark'></i>Reservation</a></li>
+    <li><a href="#"><i class='bx bxs-message-detail'></i>Contact</a></li>
+    <li><a href="#"><i class='bx bxs-users'></i>Users</a></li>
+  </ul>
+
+  <ul class="side-menu">
+    <li>
+      <a href="#" class="logout">
+        <i class='bx bx-log-out-circle'></i>Logout
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End of Sidebar -->
+
+<!-- Main Content -->
+<div class="content">
+  <!-- Navbar -->
+  <nav>
+    <i class='bx bx-menu'></i>
+    <form action="#">
+      <div class="form-input">
+        <input type="search" placeholder="Search..." name="search">
+        <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+      </div>
+    </form>
+    <input type="checkbox" id="theme-toggle" hidden>
+    <label for="theme-toggle" class="theme-toggle"></label>
+    <a href="#" class="notif">
+      <i class='bx bx-bell'></i>
+      <span class="count">12</span>
+    </a>
+    <a href="#" class="profile">
+      <img src="https://i.ibb.co/pxQ5Dzf/woman.png">
+    </a>
+  </nav>
+  <!-- End of Navbar -->
+
+  <main>
+    <div class="header">
+      <div class="left">
+        <h1>Hello Event</h1>
+      </div>
+    </div>
+    <div class="bottom-data">
+      <div class="orders">
+        <div class="header">
+          <i class='bx bx-receipt'></i>
+          <h3>Glycemias</h3>
+          <i class='bx bx-filter'></i>
+          <i class='bx bx-search'></i>
+        </div>
+        <app-list-event></app-list-event>
+      </div>
+
+      <!-- Reminders -->
+      <div class="reminders">
+        <div class="header">
+          <i class='bx bx-note'></i>
+          <h3>Ajouter un Événement</h3>
+        </div>
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill">
+            <mat-label>Nom de l'évènement</mat-label>
+            <input matInput id="name" formControlName="name">
+            <mat-error *ngIf="eventForm.get('name')?.invalid && eventForm.get('name')?.touched">
+              Le nom de l'évènement est requis.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date de l'évènement</mat-label>
+            <input matInput id="date" formControlName="date" type="date">
+            <mat-error *ngIf="eventForm.get('date')?.invalid && eventForm.get('date')?.touched">
+              La date de l'évènement est requise.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Lieu de l'évènement</mat-label>
+            <input matInput id="location" formControlName="location">
+            <mat-error *ngIf="eventForm.get('location')?.invalid && eventForm.get('location')?.touched">
+              Le lieu de l'évènement est requis.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Catégorie de l'évènement</mat-label>
+            <input matInput id="category" formControlName="category">
+            <mat-error *ngIf="eventForm.get('category')?.invalid && eventForm.get('category')?.touched">
+              La catégorie de l'évènement est requise.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Capacité de l'évènement</mat-label>
+            <input matInput id="capacity" formControlName="capacity" type="number">
+            <mat-error *ngIf="eventForm.get('capacity')?.invalid && eventForm.get('capacity')?.touched">
+              La capacité de l'évènement est requise.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Prix de l'évènement</mat-label>
+            <input matInput id="price" formControlName="price" type="number" step="0.01">
+            <mat-error *ngIf="eventForm.get('price')?.invalid && eventForm.get('price')?.touched">
+              Le prix de l'évènement est requis et doit être positif.
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="eventForm.invalid">
+            Ajouter l'évènement
+          </button>
+        </form>
+      </div>
+      <!-- End of Reminders -->
+    </div>
+  </main>
+</div>

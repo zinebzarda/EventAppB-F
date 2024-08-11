@@ -1,0 +1,45 @@
+<div class="body">
+  <div class="registration-container">
+    <div class="image-section">
+      <img src="https://img.freepik.com/photos-gratuite/femme-taille-moyenne-est-dj-lunettes-realite-augmentee_23-2151425633.jpg" alt="Decorative image" />
+    </div>
+    <div class="form-section">
+      <div class="form-card">
+        <h2>Create an account</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <div class="form-group">
+            <input id="username" formControlName="username" type="text" placeholder="Username" />
+            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error-message">
+              Username is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <input id="email" formControlName="email" type="email" placeholder="Email" />
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+              A valid email is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <input id="password" formControlName="password" type="password" placeholder="Password" />
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+              Password is required and must be at least 8 characters.
+            </div>
+          </div>
+          <div class="form-group">
+            <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm Password" />
+            <div *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched" class="error-message">
+              Passwords must match.
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">Sign Up</button>
+          <p class="alternate-option">OR</p>
+          
+        </form>
+        <div class="register">
+          Already have an account? <a href="/login">Log in</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container mt-4">
+    <h2 class="mb-4">Reservation List</h2>
+  
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Reservations Table -->
+    <div *ngIf="!isLoading && !errorMessage">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Reservation ID</th>
+            <th>Event Name</th>
+            <th>User Username</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of reservations">
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.event.name }}</td>
+            <td>{{ reservation.user.username }}</td>
+            <td>{{ reservation.date  }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

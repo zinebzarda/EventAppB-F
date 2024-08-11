@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Discover Amazing Events</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let event of events">
+      <div class="card event-card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.name }}</h5>
+          <p class="card-text"><i class="far fa-calendar-alt"></i> {{ event.date }}</p>
+          <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ event.location || 'N/A' }}</p>
+          <p class="card-text"><i class="fas fa-tag"></i> {{ event.category || 'N/A' }}</p>
+          <p class="card-text"><i class="fas fa-users"></i> Capacity: {{ event.capacity }}</p>
+          <p class="card-text"><i class="fas fa-dollar-sign"></i> {{ event.price | currency }}</p>
+          <a href="#" class="btn btn-book btn-block">
+            <i class="fas fa-ticket-alt"></i> Reserve Your Spot
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

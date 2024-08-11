@@ -1,0 +1,28 @@
+<table>
+  <thead>
+  <tr>
+    <th>EVENT NAME</th>
+    <th>DATE</th>
+    <th>location</th>
+    <th>category</th>
+    <th>capacity</th>
+    <th>price</th>
+    <th>Supprimer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let event of events">
+    <td>{{ event.name }}</td>
+    <td>{{ event.date | date:'shortDate' }}</td>
+    <td>{{ event.location || 'N/A' }}</td>
+    <td>{{ event.category || 'N/A' }}</td>
+    <td>{{ event.capacity }}</td>
+    <td>{{ event.price | currency }}</td>
+    <td>
+      <a class="btn btn-outline-danger" (click)="deleteEvent(event.id)">
+        <i class='bx bx-trash'></i>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
